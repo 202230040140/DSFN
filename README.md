@@ -25,7 +25,7 @@ Zhiying Jiang<sup>1</sup> &ensp; Ruhao Yan<sup>2</sup> &ensp; Zengxi Zhang<sup>2
 
 [2025-10-09] The code and the pre-trained model are available.
 
-[2025-11-09] The Chinese translation of our paper is available.[[Chinese translation version]](./Paper/NeurIPS2025_CN.pdf)
+[2025-11-09] The Chinese translation of our paper is available. [[Chinese translation version]](./Paper/NeurIPS2025_CN.pdf)
 
 ## Code
 **Requirements**
