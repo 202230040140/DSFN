@@ -20,6 +20,8 @@ Zhiying Jiang<sup>1</sup> &ensp; Ruhao Yan<sup>2</sup> &ensp; Zengxi Zhang<sup>2
 
 [2025-10-09] 开源代码与预训练模型。
 
+[2025-11-09] 提供了本文的中译版.[[中译版]](./Paper/NeurIPS2025_CN.pdf)
+
 ## 代码
 
 ### 运行环境
