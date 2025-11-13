@@ -122,8 +122,18 @@ python test.py
 
 
 ## 引用
-等待更新。
-
+如果这项工作对您有帮助，您可以引用本文！
+```
+@misc{jiang2025depthsupervisedfusionnetworkseamlessfree,
+      title={Depth-Supervised Fusion Network for Seamless-Free Image Stitching}, 
+      author={Zhiying Jiang and Ruhao Yan and Zengxi Zhang and Bowei Zhang and Jinyuan Liu},
+      year={2025},
+      eprint={2510.21396},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2510.21396}, 
+}
+```
 
 
 
