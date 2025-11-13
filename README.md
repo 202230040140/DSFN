@@ -103,7 +103,7 @@ If you have any other questions about the code, please email: yanruhao1997@hotma
 
 ## Citation
 If you think this work is helpful to you, you can refer cite this paper!
-`
+```
 @misc{jiang2025depthsupervisedfusionnetworkseamlessfree,
       title={Depth-Supervised Fusion Network for Seamless-Free Image Stitching}, 
       author={Zhiying Jiang and Ruhao Yan and Zengxi Zhang and Bowei Zhang and Jinyuan Liu},
@@ -113,7 +113,7 @@ If you think this work is helpful to you, you can refer cite this paper!
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2510.21396}, 
 }
-`
+```
 
 
 
