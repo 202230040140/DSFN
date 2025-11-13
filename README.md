@@ -102,8 +102,18 @@ Please set the training dataset path in Warp/newCodes/test_output.py and Fusion/
 If you have any other questions about the code, please email: yanruhao1997@hotmail.com
 
 ## Citation
-Waiting for the update.
-
+If you think this work is helpful to you, you can refer cite this paper!
+`
+@misc{jiang2025depthsupervisedfusionnetworkseamlessfree,
+      title={Depth-Supervised Fusion Network for Seamless-Free Image Stitching}, 
+      author={Zhiying Jiang and Ruhao Yan and Zengxi Zhang and Bowei Zhang and Jinyuan Liu},
+      year={2025},
+      eprint={2510.21396},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2510.21396}, 
+}
+`
 
 
 
