@@ -102,7 +102,7 @@ Please set the training dataset path in Warp/newCodes/test_output.py and Fusion/
 If you have any other questions about the code, please email: yanruhao1997@hotmail.com
 
 ## Citation
-If you think this work is helpful to you, you can refer cite this paper!
+If you think this work is helpful to you, you can cite this paper!
 ```
 @misc{jiang2025depthsupervisedfusionnetworkseamlessfree,
       title={Depth-Supervised Fusion Network for Seamless-Free Image Stitching}, 
