@@ -133,6 +133,12 @@ python test.py
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2510.21396}, 
 }
+
+@inproceedings{jiangdepth,
+  title={Depth-Supervised Fusion Network for Seamless-Free Image Stitching},
+  author={Jiang, Zhiying and Yan, Ruhao and Zhang, Zengxi and Zhang, Bowei and Liu, Jinyuan},
+  booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems}
+}
 ```
 
 
