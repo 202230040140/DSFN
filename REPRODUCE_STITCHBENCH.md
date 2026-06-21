@@ -30,7 +30,7 @@ The runner reads the OBJ-GSP manifest (100 General pairs) and writes only `panor
 
 ```powershell
 python -m dsfn_py.run_stitchbench_general `
-  --manifest C:\Users\22499\Documents\GitHub\OBJ-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035\manifest.csv `
+  --manifest C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035\manifest.csv `
   --out outputs\stitchbench_general `
   --device cuda `
   --max-input-edge 2048
@@ -51,10 +51,10 @@ outputs/stitchbench_general/
 
 ```powershell
 python -m dsfn_py.evaluate_stitchbench_mdr_niqe `
-  --manifest C:\Users\22499\Documents\GitHub\OBJ-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035\manifest.csv `
+  --manifest C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035\manifest.csv `
   --dsfn-root outputs\stitchbench_general `
   --output-root outputs\stitchbench_general `
-  --depth-gsp-root C:\Users\22499\Documents\GitHub\OBJ-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035 `
+  --depth-gsp-root C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035 `
   --device cuda
 ```
 
@@ -82,13 +82,13 @@ MDR uses the same formula as Depth-GSP/OBJ-GSP C++ debug `{dataset}-RMSE-[DPS].t
 
 ```powershell
 python -m dsfn_py.run_stitchbench_general `
-  --manifest C:\Users\22499\Documents\GitHub\OBJ-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035\manifest.csv `
+  --manifest C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035\manifest.csv `
   --out outputs\stitchbench_general_smoke `
   --dataset SVA-01_chess `
   --device cuda
 
 python -m dsfn_py.evaluate_stitchbench_mdr_niqe `
-  --manifest C:\Users\22499\Documents\GitHub\OBJ-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035\manifest.csv `
+  --manifest C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss\runs\depth_gsp_v5_planarity035\manifest.csv `
   --dsfn-root outputs\stitchbench_general_smoke `
   --output-root outputs\stitchbench_general_smoke `
   --device cuda

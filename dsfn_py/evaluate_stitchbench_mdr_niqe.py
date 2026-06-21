@@ -27,11 +27,11 @@ from .mesh_rmse import compute_mesh_rmse, compute_warping_residual
 from .run_stitchbench_general import default_warp_ckpt
 
 DEFAULT_MANIFEST = (
-    r"C:\Users\22499\Documents\GitHub\OBJ-GSP\experiments\phase1_depth_loss"
+    r"C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss"
     r"\runs\depth_gsp_v5_planarity035\manifest.csv"
 )
 DEFAULT_DEPTH_GSP_ROOT = (
-    r"C:\Users\22499\Documents\GitHub\OBJ-GSP\experiments\phase1_depth_loss"
+    r"C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss"
     r"\runs\depth_gsp_v5_planarity035"
 )
 

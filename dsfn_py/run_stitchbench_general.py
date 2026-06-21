@@ -13,7 +13,7 @@ from .inference import load_fusion_network, load_warp_network, resolve_device, s
 from .io_utils import save_rgb
 
 DEFAULT_MANIFEST = (
-    r"C:\Users\22499\Documents\GitHub\OBJ-GSP\experiments\phase1_depth_loss"
+    r"C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss"
     r"\runs\depth_gsp_v5_planarity035\manifest.csv"
 )
 
