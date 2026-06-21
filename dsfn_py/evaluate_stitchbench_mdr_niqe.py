@@ -26,14 +26,8 @@ from .io_utils import read_rgb
 from .mesh_rmse import compute_mesh_rmse, compute_warping_residual
 from .run_stitchbench_general import default_warp_ckpt
 
-DEFAULT_MANIFEST = (
-    r"C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss"
-    r"\runs\depth_gsp_v5_planarity035\manifest.csv"
-)
-DEFAULT_DEPTH_GSP_ROOT = (
-    r"C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss"
-    r"\runs\depth_gsp_v5_planarity035"
-)
+DEFAULT_MANIFEST = r"D:\StitchBench_Result\_shared\manifest.csv"
+DEFAULT_DEPTH_GSP_ROOT = r"D:\StitchBench_Result\depth_gsp"
 
 CATEGORIES = ("OBJ-GSP", "AANAP", "APAP", "CAVE", "DFW", "DHW", "GES", "LPC", "REW", "SEAGULL", "SVA", "SPHP")
 
@@ -481,8 +475,8 @@ def compare_to_depth_gsp(output_root: Path, candidate_rows: list[dict[str, Any]]
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Evaluate DSFN StitchBench General outputs with MDR/NIQE tables.")
     parser.add_argument("--manifest", default=DEFAULT_MANIFEST)
-    parser.add_argument("--dsfn-root", default="outputs/stitchbench_general")
-    parser.add_argument("--output-root", default="outputs/stitchbench_general")
+    parser.add_argument("--dsfn-root", default=r"D:\StitchBench_Result\dsfn")
+    parser.add_argument("--output-root", default=r"D:\StitchBench_Result\dsfn")
     parser.add_argument("--depth-gsp-root", default=DEFAULT_DEPTH_GSP_ROOT)
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--warp-ckpt", default=str(default_warp_ckpt()))

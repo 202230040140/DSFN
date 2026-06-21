@@ -12,10 +12,7 @@ from tqdm import tqdm
 from .inference import load_fusion_network, load_warp_network, resolve_device, stitch_pair
 from .io_utils import save_rgb
 
-DEFAULT_MANIFEST = (
-    r"C:\Users\22499\Documents\GitHub\Depth-GSP\experiments\phase1_depth_loss"
-    r"\runs\depth_gsp_v5_planarity035\manifest.csv"
-)
+DEFAULT_MANIFEST = r"D:\StitchBench_Result\_shared\manifest.csv"
 
 
 def default_warp_ckpt() -> Path:
@@ -89,7 +86,7 @@ def process_pair(
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run DSFN on StitchBench General manifest pairs.")
     parser.add_argument("--manifest", default=DEFAULT_MANIFEST, help="OBJ-GSP manifest.csv with 100 General pairs.")
-    parser.add_argument("--out", default="outputs/stitchbench_general", help="Output folder, ignored by git.")
+    parser.add_argument("--out", default=r"D:\StitchBench_Result\dsfn", help="Output folder, ignored by git.")
     parser.add_argument("--warp-ckpt", default=str(default_warp_ckpt()), help="Warp checkpoint path.")
     parser.add_argument("--fusion-ckpt", default=str(default_fusion_ckpt()), help="Fusion checkpoint path.")
     parser.add_argument("--device", default="auto", choices=["auto", "cuda", "cpu"], help="Inference device.")
