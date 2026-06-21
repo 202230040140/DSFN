@@ -110,6 +110,20 @@ import glob
 from collections import OrderedDict
 import random
 
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"}
+
+
+def _folder_name(path: str) -> str:
+    return os.path.basename(path.rstrip("\\/"))
+
+
+def _list_images(folder: str) -> list[str]:
+    return sorted(
+        os.path.join(folder, name)
+        for name in os.listdir(folder)
+        if os.path.splitext(name)[1].lower() in IMAGE_EXTENSIONS
+    )
+
 
 class TrainDataset(Dataset):
     def __init__(self, data_path):
@@ -121,12 +135,11 @@ class TrainDataset(Dataset):
         
         datas = glob.glob(os.path.join(self.train_path, '*'))
         for data in sorted(datas):
-            data_name = data.split('/')[-1]
+            data_name = _folder_name(data)
             if data_name == 'input1' or data_name == 'input2' or data_name == "depthInput1" or data_name == "depthInput2": # add depth input
                 self.datas[data_name] = {}
                 self.datas[data_name]['path'] = data
-                self.datas[data_name]['image'] = glob.glob(os.path.join(data, '*.jpg'))
-                self.datas[data_name]['image'].sort()
+                self.datas[data_name]['image'] = _list_images(data)
         print(self.datas.keys())
 
     def __getitem__(self, index):
@@ -191,12 +204,11 @@ class TestDataset(Dataset):
         
         datas = glob.glob(os.path.join(self.test_path, '*'))
         for data in sorted(datas):
-            data_name = data.split('/')[-1]
+            data_name = _folder_name(data)
             if data_name == 'input1' or data_name == 'input2' :
                 self.datas[data_name] = {}
                 self.datas[data_name]['path'] = data
-                self.datas[data_name]['image'] = glob.glob(os.path.join(data, '*.jpg'))
-                self.datas[data_name]['image'].sort()
+                self.datas[data_name]['image'] = _list_images(data)
         print(self.datas.keys())
 
     def __getitem__(self, index):
@@ -236,12 +248,11 @@ class TestDepthOutDataset(Dataset):
         
         datas = glob.glob(os.path.join(self.train_path, '*'))
         for data in sorted(datas):
-            data_name = data.split('/')[-1]
+            data_name = _folder_name(data)
             if data_name == 'input1' or data_name == 'input2' or data_name == "depthInput1" or data_name == "depthInput2": # add depth input
                 self.datas[data_name] = {}
                 self.datas[data_name]['path'] = data
-                self.datas[data_name]['image'] = glob.glob(os.path.join(data, '*.jpg'))
-                self.datas[data_name]['image'].sort()
+                self.datas[data_name]['image'] = _list_images(data)
         print(self.datas.keys())
 
     def __getitem__(self, index):

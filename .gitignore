@@ -1,0 +1,19 @@
+outputs/
+logs/
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+*.tmp
+
+# Pretrained weights and generated stitch artifacts
+*.pth
+Warp/ave_fusion/
+Fusion/composition/
+Fusion/learn_mask1/
+Fusion/learn_mask2/
+Warp/learn_mask1/
+Warp/learn_mask2/

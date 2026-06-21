@@ -1,0 +1,12 @@
+# Reproduction dependencies for the DSFN StitchBench runner and MDR/NIQE evaluation.
+#
+# Install CUDA-enabled PyTorch separately for your local CUDA version, e.g.
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+opencv-python
+numpy
+scipy
+pillow
+torch
+torchvision
+pyiqa
+tqdm

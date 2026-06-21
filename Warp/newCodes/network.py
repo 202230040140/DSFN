@@ -528,7 +528,15 @@ def build_output_model(net, input1_tensor, input2_tensor):
 
 
     out_dict = {}
-    out_dict.update(final_warp1=homo_output[:, 0:3, ...]-1, final_warp1_mask = homo_output[:, 3:6, ...], final_warp2=tps_output[:, 0:3, ...]-1, final_warp2_mask = tps_output[:, 3:6, ...], mesh1=rigid_mesh, mesh2=mesh_trans)
+    out_dict.update(
+        final_warp1=homo_output[:, 0:3, ...] - 1,
+        final_warp1_mask=homo_output[:, 3:6, ...],
+        final_warp2=tps_output[:, 0:3, ...] - 1,
+        final_warp2_mask=tps_output[:, 3:6, ...],
+        mesh1=rigid_mesh,
+        mesh2=mesh_trans,
+        I_mat=I_mat,
+    )
 
     return out_dict
 
