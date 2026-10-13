@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import gc
 import json
 import sys
@@ -25,12 +26,15 @@ from dsfn_py.inference import (  # noqa: E402
 from dsfn_py.io_utils import save_rgb  # noqa: E402
 from dsfn_py.run_stitchbench_general import default_fusion_ckpt, default_warp_ckpt  # noqa: E402
 
-DEFAULT_RESULT_ROOT = r"D:\HD3D_Result"
-DEFAULT_MANIFEST = r"D:\HD3D_Result\_work\manifest.json"
+DEFAULT_RESULT_ROOT = r"D:\HD3D_Dataset_Result"
+DEFAULT_MANIFEST = r"D:\HD3D_Dataset_Result\_global_work\_work_root\manifest.csv"
 METHOD_FOLDER = "dsfn"
 
 
 def load_manifest(path: Path) -> list[dict[str, Any]]:
+    if path.suffix.lower() == '.csv':
+        with path.open(newline='',encoding='utf-8-sig') as stream:
+            return list(csv.DictReader(stream))
     return json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -100,7 +104,7 @@ def process_entry(
 ) -> dict[str, Any]:
     pair_name = entry["pair_name"]
     method_dir = Path(entry["final_pair_dir"]) / METHOD_FOLDER
-    raw_path = method_dir / "raw.png"
+    raw_path = method_dir / "stitch_result.png"
     left_path = Path(entry["left_source"])
     right_path = Path(entry["right_source"])
 
@@ -178,7 +182,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--only-incomplete",
         action="store_true",
-        help="Skip pairs that already have dsfn/raw.png.",
+        help="Skip pairs that already have dsfn/stitch_result.png.",
     )
     parser.add_argument("--stop-on-error", action="store_true")
     return parser
@@ -198,7 +202,7 @@ def main(argv: list[str] | None = None) -> int:
         manifest = [
             entry
             for entry in manifest
-            if not (Path(entry["final_pair_dir"]) / METHOD_FOLDER / "raw.png").exists()
+            if not (Path(entry["final_pair_dir"]) / METHOD_FOLDER / "stitch_result.png").exists()
         ]
     if args.pair:
         wanted = set(args.pair)

@@ -69,9 +69,10 @@ def align_pair_shapes(image1_bgr: np.ndarray, image2_bgr: np.ndarray) -> tuple[n
     )
 
 
-def tensor_to_rgb01(tensor: torch.Tensor) -> np.ndarray:
+def tensor_bgr_to_rgb01(tensor: torch.Tensor) -> np.ndarray:
     image = ((tensor[0].detach().cpu().numpy() + 1.0) * 127.5).transpose(1, 2, 0)
-    return np.clip(image, 0.0, 255.0).astype(np.float64) / 255.0
+    image = np.clip(image, 0.0, 255.0).astype(np.uint8)
+    return cv2.cvtColor(image, cv2.COLOR_BGR2RGB).astype(np.float64) / 255.0
 
 
 def mask_tensor_to_single_channel(mask_tensor: torch.Tensor) -> torch.Tensor:
@@ -138,7 +139,7 @@ def _fallback_input_edges(max_input_edge: int) -> list[int]:
     if max_input_edge <= 0:
         return [0]
     edges = [max_input_edge]
-    for edge in (1536, 1024, 768, 512, 384, 256):
+    for edge in (1536, 1024, 768, 512, 384, 256, 192, 128):
         if edge < max_input_edge and edge not in edges:
             edges.append(edge)
     return edges
@@ -346,9 +347,9 @@ def _stitch_pair_once(
         mask2 = mask_tensor_to_single_channel(warp_out["final_warp2_mask"])
         stitched = _run_fusion(fusion_net, build_model, warp1, warp2, mask1, mask2)
 
-    warped_reference = tensor_to_rgb01(warp_out["final_warp1"])
-    warped_target = tensor_to_rgb01(warp_out["final_warp2"])
-    panorama = tensor_to_rgb01(stitched)
+    warped_reference = tensor_bgr_to_rgb01(warp_out["final_warp1"])
+    warped_target = tensor_bgr_to_rgb01(warp_out["final_warp2"])
+    panorama = tensor_bgr_to_rgb01(stitched)
     return warped_reference, warped_target, panorama
 
 

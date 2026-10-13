@@ -10,11 +10,33 @@ import numpy as np
 import torchvision.models as models
 
 import torchvision.transforms as T
-resize_512 = T.Resize((512,512))
+resize_512 = T.Resize((512,512), antialias=False)
 
 import grid_res
 grid_h = grid_res.GRID_H
 grid_w = grid_res.GRID_W
+
+MAX_SAFE_CANVAS_PIXELS = 6_000_000
+MAX_SAFE_CANVAS_SIDE = 4096
+
+
+def _tensor_to_ceil_int(value):
+    if torch.is_tensor(value):
+        return int(torch.ceil(value.detach().float()).item())
+    return int(np.ceil(float(value)))
+
+
+def _guard_canvas_size(out_height, out_width):
+    height = _tensor_to_ceil_int(out_height)
+    width = _tensor_to_ceil_int(out_width)
+    pixels = height * width
+    if height <= 0 or width <= 0:
+        raise RuntimeError(f"invalid DSFN canvas size: {width}x{height}")
+    if pixels > MAX_SAFE_CANVAS_PIXELS or height > MAX_SAFE_CANVAS_SIDE or width > MAX_SAFE_CANVAS_SIDE:
+        raise RuntimeError(
+            f"DSFN canvas too large before warp allocation: {width}x{height} "
+            f"({pixels} pixels); not enough memory"
+        )
 
 
 # draw mesh on image
@@ -313,6 +335,7 @@ def build_depth_output_model(net, input1_tensor, input2_tensor, depthInput1_tens
     out_height = height_max - height_min
     #print(out_width)
     #print(out_height)
+    _guard_canvas_size(out_height, out_width)
 
     # get warped img1
     M_tensor = torch.tensor([[out_width / 2.0, 0., out_width / 2.0],
@@ -424,6 +447,7 @@ def get_stitched_result(input1_tensor, input2_tensor, rigid_mesh, mesh):
     out_height = height_max - height_min
     print(out_width)
     print(out_height)
+    _guard_canvas_size(out_height, out_width)
 
     warp1 = torch.zeros([batch_size, 3, out_height.int(), out_width.int()]).cuda()
     warp1[:,:, int(torch.abs(height_min)):int(torch.abs(height_min))+img_h,  int(torch.abs(width_min)):int(torch.abs(width_min))+img_w] = (input1_tensor+1)*127.5
@@ -495,6 +519,7 @@ def build_output_model(net, input1_tensor, input2_tensor):
     out_height = height_max - height_min
     #print(out_width)
     #print(out_height)
+    _guard_canvas_size(out_height, out_width)
 
     # get warped img1
     M_tensor = torch.tensor([[out_width / 2.0, 0., out_width / 2.0],
